@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+}
+
+@keyframes colors {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body {
+    background: linear-gradient(45deg, #b6e0e6, #aa9c94, #b99d8c,#8bd3dd, #f7ece4);
+    background-size: 300%, 300%; 
+    display: flex;
+    justify-content: center;
+    animation: colors 15s ease infinite;
+
+    .card {
+        margin: 1rem 1rem;
+        &__header{
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px;
+
+            & img {
+                border: 5px solid #001858;
+                width: 10rem;
+                height: 10rem;
+                border-radius: 50%;
+                margin-top: 4.5rem;
+            }
+
+            & h2, p {
+                text-shadow: -2px 2px 2px rgba(0, 0, 0, 0.25);
+                color: #fff;
+                margin-top: .7rem;
+            }
+        }
+
+        .contents {
+            display: flex;
+            background-color: #8bd3dd;
+            border-radius: 12px;
+            padding: 1.5rem;
+            align-items: center;
+            justify-content: space-between;
+            border: 3px solid #001858;
+            cursor: pointer;
+            font-style: none;
+            margin-top: 1rem;
+            transition: .7s;
+            z-index: 999;
+
+            & p {
+                text-shadow: -2px 2px 2px rgba(0, 0, 0, 0.25);
+                color: #fff;
+                margin-top: .5rem;
+                
+            }
+
+            & img:nth-child(1) {
+                width: 50px;
+            }
+
+            &:hover {
+                padding: 1.8rem;
+                
+            }
+        }
+    }
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+}
+
+@for $i from 1 through 30 {
+  @keyframes particle-animation-#{$i} {
+    100% {
+      transform: translate3d((random(90) * 1vw), (random(90) * 1vh), (random(100) * 1px));
+    }
+  }
+  
+  .particle:nth-child(#{$i}){
+    animation: particle-animation-#{$i} 60s infinite;
+    $size: random(5) + 5 + px;
+    opacity: random(100)/100;
+    height: $size;
+    width: $size;
+    animation-delay: -$i * .2s;
+    transform: translate3d((random(90) * 1vw), (random(90) * 1vh), (random(100) * 1px));
+    background: hsl(random(360), 70%, 50%);
+  }
+}
